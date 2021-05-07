@@ -20,7 +20,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "t_reclamo")
+@Table(name = "t_complaint")
 public class Complaint{
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

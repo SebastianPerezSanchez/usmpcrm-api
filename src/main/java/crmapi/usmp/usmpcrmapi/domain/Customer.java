@@ -1,5 +1,6 @@
 package crmapi.usmp.usmpcrmapi.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "t_reclamo")
+@Table(name = "t_customer")
 public class Customer{
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +28,10 @@ public class Customer{
 
     private String name;
     private String lastname;
-    private String dni;
+    private String documentID;
+    private Date birthdate;
     private String email;
+    private String address;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Complaint> customerComplaints;
