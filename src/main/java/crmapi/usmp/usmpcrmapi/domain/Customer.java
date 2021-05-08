@@ -34,7 +34,7 @@ public class Customer{
     private String address;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Complaint> customerComplaints;
+    private List<Order> customerOrders;
 
 
 }

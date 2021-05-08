@@ -1,0 +1,32 @@
+POST http://localhost:8080/customer HTTP/1.1
+Content-Type: application/json
+
+{
+    "name" : "Juan",
+    "lastname" : "Perez",
+    "documentID" : "87654321",
+    "birthdate" : "2018-03-29",
+    "email" : "juan@perez.com",
+    "address" : "Av. Casas 182 - City"
+}
+
+GET http://localhost:8080/customers HTTP/1.1
+Accept: application/json
+
+GET http://localhost:8080/orders HTTP/1.1
+Accept: application/json
+
+GET http://localhost:8080/order/7 HTTP/1.1
+Accept: application/json
+
+GET http://localhost:8080/complaints HTTP/1.1
+Accept: application/json
+
+POST http://localhost:8080/order HTTP/1.1
+Content-Type: application/json
+
+{
+    "customer_id" : "2"
+}
+
+
