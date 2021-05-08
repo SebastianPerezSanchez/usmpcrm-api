@@ -1,32 +1,85 @@
-POST http://localhost:8080/customer HTTP/1.1
+@Host = https://usmpcrm-api.herokuapp.com/
+
+//Customers
+POST {{Host}}/customer HTTP/1.1
 Content-Type: application/json
 
 {
-    "name" : "Juan",
+    "name" : "Ronal",
+    "lastname" : "Roben",
+    "documentID" : "96325874",
+    "birthdate" : "1999-04-29",
+    "email" : "ronal@roben.com",
+    "address" : "Av. Carreter 104 - City"
+}
+
+GET {{Host}}/customers HTTP/1.1
+Accept: application/json
+
+GET {{Host}}/customer/1 HTTP/1.1
+Accept: application/json
+
+DELETE {{Host}}/customer/4 HTTP/1.1
+Accept: application/json
+
+PUT {{Host}}/customer HTTP/1.1
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "name" : "Juancho",
     "lastname" : "Perez",
     "documentID" : "87654321",
-    "birthdate" : "2018-03-29",
+    "birthdate" : "2000-03-28",
     "email" : "juan@perez.com",
     "address" : "Av. Casas 182 - City"
 }
 
-GET http://localhost:8080/customers HTTP/1.1
-Accept: application/json
-
+//Orders
 GET http://localhost:8080/orders HTTP/1.1
 Accept: application/json
 
-GET http://localhost:8080/order/7 HTTP/1.1
+GET {{Host}}/order/2 HTTP/1.1
 Accept: application/json
 
-GET http://localhost:8080/complaints HTTP/1.1
-Accept: application/json
-
-POST http://localhost:8080/order HTTP/1.1
+POST {{Host}}/order HTTP/1.1
 Content-Type: application/json
 
 {
-    "customer_id" : "2"
+    "customerId" : {
+        "id" : 4
+    }
 }
+
+PUT {{Host}}/order HTTP/1.1
+Content-Type: application/json
+
+{
+    "id" : 2,
+    "customerId" : {
+        "id" : 2
+    }
+}
+
+//Complaints
+GET  {{Host}}/complaints HTTP/1.1
+Accept: application/json
+
+GET {{Host}}/complaints/2 HTTP/1.1
+Accept: application/json
+
+POST {{Host}}/complaint HTTP/1.1
+Content-Type: application/json
+
+{
+    "subject" : "Reclamo Prueba",
+    "explanation" : "Esto es una prueba de reclamo",
+    "orderID" : {
+        "id" : 4
+    }
+}
+
+
+
 
 

@@ -1,5 +1,7 @@
 package crmapi.usmp.usmpcrmapi.domain;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,11 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.*;
 
 @Getter
@@ -32,12 +35,17 @@ public class Complaint{
     private String subject;
     private String explanation;
     
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private ZonedDateTime date;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "order_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Order orderID;
+
+    @PrePersist
+    void addTimestamp() {
+    date = ZonedDateTime.now();
+    }
 
 
 }

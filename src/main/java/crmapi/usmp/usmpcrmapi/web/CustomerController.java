@@ -34,7 +34,7 @@ public class CustomerController {
             customerRepository.findAll(),HttpStatus.OK);
     }
 
-    @GetMapping(value = "/product/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> customers(@PathVariable int id){
         Optional<Customer> optionalEntity = customerRepository.findById(id);
         if(optionalEntity.isPresent()){
@@ -52,8 +52,9 @@ public class CustomerController {
     }
 
     @PutMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> update(@RequestBody Customer c) {
-        create(c);
+    public ResponseEntity<Customer> update(@RequestBody Customer c){
+        customerRepository.save(c);
+        customerRepository.flush();
         return new ResponseEntity<Customer>(HttpStatus.OK);
     }
 
