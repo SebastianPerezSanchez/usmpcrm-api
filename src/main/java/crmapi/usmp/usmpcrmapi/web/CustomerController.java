@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import crmapi.usmp.usmpcrmapi.domain.Customer;
 import crmapi.usmp.usmpcrmapi.repository.CustomerRepository;
 
 @RestController
+@RequestMapping(value = "api/customer", produces = "application/jason" )
 public class CustomerController {
 
     private CustomerRepository customerRepository;
@@ -28,13 +30,13 @@ public class CustomerController {
     }
 
 
-    @GetMapping(value = "/customers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Customer>> customers() {
         return new ResponseEntity<List<Customer>>(
             customerRepository.findAll(),HttpStatus.OK);
     }
 
-    @GetMapping(value = "/customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> customers(@PathVariable int id){
         Optional<Customer> optionalEntity = customerRepository.findById(id);
         if(optionalEntity.isPresent()){
@@ -44,21 +46,21 @@ public class CustomerController {
         }
     }
 
-    @PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> create(@RequestBody Customer c) {
         customerRepository.save(c);
         customerRepository.flush();
         return new ResponseEntity<Integer>(c.getId(), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> update(@RequestBody Customer c){
         customerRepository.save(c);
         customerRepository.flush();
         return new ResponseEntity<Customer>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> delete(@PathVariable int id) {
         customerRepository.deleteById(id);
         return new ResponseEntity<Customer>(HttpStatus.OK);

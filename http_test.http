@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 //Orders
-GET http://localhost:8080/orders HTTP/1.1
+GET {{Host}}/orders HTTP/1.1
 Accept: application/json
 
 GET {{Host}}/order/2 HTTP/1.1

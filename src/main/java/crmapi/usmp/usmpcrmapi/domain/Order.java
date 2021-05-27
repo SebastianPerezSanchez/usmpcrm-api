@@ -37,6 +37,7 @@ public class Order {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Complaint complaintID;
 
-    private Double rating;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Rating rating;
     
 }
