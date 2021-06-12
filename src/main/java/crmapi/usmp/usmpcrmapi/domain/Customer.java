@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import lombok.*;
 
 @Getter
@@ -26,6 +29,7 @@ public class Customer{
     private String name;
     private String lastname;
     private String documentID;
+    @Temporal(TemporalType.DATE)
     private Date birthdate;
     private String email;
     private String address;
