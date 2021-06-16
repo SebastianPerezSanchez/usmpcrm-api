@@ -37,6 +37,7 @@ public class Complaint{
     @JoinColumn(name = "order_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     */
+    //private Integer orderid
     
     @PrePersist
     void addTimestamp() {

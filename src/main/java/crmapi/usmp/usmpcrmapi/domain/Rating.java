@@ -26,4 +26,6 @@ public class Rating {
     private Double rateit;
 
     private String comments;
+
+    //private int id
 }
