@@ -29,26 +29,26 @@ public class DashboardController {
         }
 
         @GetMapping(value="/customer", produces = MediaType.APPLICATION_JSON_VALUE)
-        public ResponseEntity<List<Map<Integer,Object>>> customers(){
-            return new ResponseEntity<List<Map<Integer,Object>>>(
+        public ResponseEntity<List<Map<String,Object>>> customers(){
+            return new ResponseEntity<List<Map<String,Object>>>(
                 customerData.queryByCustomersMonth(), HttpStatus.OK);
         }
 
         @GetMapping(value = "/complaint", produces = MediaType.APPLICATION_JSON_VALUE)
-        public ResponseEntity<List<Map<Integer, Object>>> complaints(){
-            return new ResponseEntity<List<Map<Integer,Object>>>(
+        public ResponseEntity<List<Map<String, Object>>> complaints(){
+            return new ResponseEntity<List<Map<String,Object>>>(
                 complaintData.queryComplaintsMonth(), HttpStatus.OK);
         }
 
         @GetMapping(value = "/rating/avg", produces =  MediaType.APPLICATION_JSON_VALUE)
-        public ResponseEntity<List<Map<Integer,Object>>> ratingsAVG(){
-            return new ResponseEntity<List<Map<Integer,Object>>>(
+        public ResponseEntity<List<Map<String,Object>>> ratingsAVG(){
+            return new ResponseEntity<List<Map<String,Object>>>(
                 ratingData.queryAvgRating(), HttpStatus.OK);
         }
         
         @GetMapping(value = "/rating/number", produces = MediaType.APPLICATION_JSON_VALUE)
-        public ResponseEntity<List<Map<Integer,Object>>> ratingsNumber() {
-            return new ResponseEntity<List<Map<Integer,Object>>>(
+        public ResponseEntity<List<Map<String,Object>>> ratingsNumber() {
+            return new ResponseEntity<List<Map<String,Object>>>(
                 ratingData.queryNumberRating(), HttpStatus.OK);
         }
 }
