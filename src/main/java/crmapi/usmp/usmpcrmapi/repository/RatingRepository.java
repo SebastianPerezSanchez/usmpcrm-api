@@ -16,7 +16,7 @@ public interface RatingRepository extends JpaRepository<Rating,Integer>{
     @Query("select to_char(avg(tr.rateit), 'FM999999999.00') as average from Rating tr")
     List<Map<String,Object>> queryAvgRating();
 
-    @Query("select tr.rateit as rating, count(tr.rateit) as count from Rating tr group by tr.rateit order by tr.rateit")
+    @Query("select concat(tr.rateit , ' stars') as rating, count(tr.rateit) as count from Rating tr group by rateit order by rateit")
     List<Map<String,Object>> queryNumberRating();
 
 }
