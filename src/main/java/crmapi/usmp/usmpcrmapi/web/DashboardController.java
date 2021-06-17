@@ -27,15 +27,27 @@ public class DashboardController {
             this.complaintData = complaintData;
             this.ratingData = ratingData;
         }
+        
+        @GetMapping(value = "/customer/all", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String, Object>>> customersAll(){
+            return new ResponseEntity<List<Map<String, Object>>>(
+            customerData.queryAllCustomers(), HttpStatus.OK);
+        }
 
-        @GetMapping(value="/customer", produces = MediaType.APPLICATION_JSON_VALUE)
-        public ResponseEntity<List<Map<String,Object>>> customers(){
+        @GetMapping(value="/customer/month", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String,Object>>> customersPerMonth(){
             return new ResponseEntity<List<Map<String,Object>>>(
                 customerData.queryByCustomersMonth(), HttpStatus.OK);
         }
 
-        @GetMapping(value = "/complaint", produces = MediaType.APPLICATION_JSON_VALUE)
-        public ResponseEntity<List<Map<String, Object>>> complaints(){
+        @GetMapping(value ="/complaint/all", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String, Object>>> complaintsAll(){
+            return new ResponseEntity<List<Map<String, Object>>>(
+                complaintData.queryComplaintsAll(), HttpStatus.OK);
+        }
+
+        @GetMapping(value = "/complaint/month", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String, Object>>> complaintsPerMonth(){
             return new ResponseEntity<List<Map<String,Object>>>(
                 complaintData.queryComplaintsMonth(), HttpStatus.OK);
         }
