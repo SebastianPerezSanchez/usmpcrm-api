@@ -13,7 +13,7 @@ import crmapi.usmp.usmpcrmapi.domain.Rating;
 @Repository
 public interface RatingRepository extends JpaRepository<Rating,Integer>{
     
-    @Query("select avg(tr.rateit) as average from Rating tr")
+    @Query("select to_char(avg(tr.rateit), 'FM999999999.00') as average from Rating tr")
     List<Map<String,Object>> queryAvgRating();
 
     @Query("select tr.rateit as rating, count(tr.rateit) as count from Rating tr group by tr.rateit order by tr.rateit")
