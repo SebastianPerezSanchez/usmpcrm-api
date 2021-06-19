@@ -2,6 +2,7 @@ package crmapi.usmp.usmpcrmapi.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import crmapi.usmp.usmpcrmapi.repository.*;
 
 
 
+@CrossOrigin(origins= "*")
 @RestController
 @RequestMapping(value = "api/dashboard", produces = "application/json")
 public class DashboardController {
