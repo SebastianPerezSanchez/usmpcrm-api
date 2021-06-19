@@ -13,11 +13,15 @@ import crmapi.usmp.usmpcrmapi.domain.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Integer>{
     
-    @Query("select to_char(tc.registerDate,'Mon') as mon, extract(year from tc.registerDate) as year, count(*) as count from Customer tc  group by extract(month from tc.registerDate),2,1 order by 2, extract(month from tc.registerDate)")
+    @Query("select concat(to_char(tc.registerDate,'Mon'),'-' ,extract(year from tc.registerDate)) as date, count(*) as customers from Customer tc where tc.registerDate >= CURRENT_DATE - 365 group by  extract(year from tc.registerDate), extract(month from tc.registerDate),to_char(tc.registerDate,'Mon') order by extract(year from tc.registerDate), extract(month from tc.registerDate)")
     List<Map<String, Object>> queryByCustomersMonth();
 
-    @Query("select count(*) as count from Customer")
+    @Query("select count(*) as customers from Customer")
     List<Map<String, Object>> queryAllCustomers();
 
-    
+    @Query("select count(*) as customers from Customer c where extract(month from c.registerDate) = extract(month from c.registerDate)")
+    List<Map<String, Object>> queryCustomersthisMonth();
+
+    @Query("select sum(case when extract(year from age(tc.birthdate)) between 18 and 30 then 1 else 0 end) as a, sum(case when extract(year from age(tc.birthdate)) between 31 and 45 then 1 else 0 end) as b, sum(case when extract(year from age(tc.birthdate)) > 46 then 1 else 0 end) as c from Customer tc")
+    List<Map<String, Object>> queryCustomersAgeRange();
 }

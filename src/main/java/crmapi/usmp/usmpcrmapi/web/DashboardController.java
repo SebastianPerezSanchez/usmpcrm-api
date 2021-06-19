@@ -40,6 +40,19 @@ public class DashboardController {
                 customerData.queryByCustomersMonth(), HttpStatus.OK);
         }
 
+        @GetMapping(value="/customer/age", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String,Object>>> customersAge(){
+            return new ResponseEntity<List<Map<String,Object>>>(
+                customerData.queryCustomersAgeRange(), HttpStatus.OK);
+        }
+        
+        @GetMapping(value = "/customer/thismonth", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String,Object>>> customersthisMonth(){
+            return new ResponseEntity<List<Map<String,Object>>>(
+                customerData.queryCustomersthisMonth(), HttpStatus.OK);
+        }
+
+
         @GetMapping(value ="/complaint/all", produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<List<Map<String, Object>>> complaintsAll(){
             return new ResponseEntity<List<Map<String, Object>>>(
@@ -52,10 +65,28 @@ public class DashboardController {
                 complaintData.queryComplaintsMonth(), HttpStatus.OK);
         }
 
+        @GetMapping(value = "/complaint/thismonth", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String, Object>>> complaintsThisMonth(){
+            return new ResponseEntity<List<Map<String, Object>>>(
+                complaintData.queryComplaintsthisMonth(), HttpStatus.OK);
+        }
+
         @GetMapping(value = "/rating/avg", produces =  MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<List<Map<String,Object>>> ratingsAVG(){
             return new ResponseEntity<List<Map<String,Object>>>(
                 ratingData.queryAvgRating(), HttpStatus.OK);
+        }
+
+        @GetMapping(value = "/rating/avgmonth", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String,Object>>> ratingAVGperMonth(){
+            return new ResponseEntity<List<Map<String,Object>>>(
+                ratingData.queryAvgRatingMonth(), HttpStatus.OK);
+        }
+
+        @GetMapping(value = "/rating/avgthismonth", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String,Object>>> ratingAVGthisMonth(){
+            return new ResponseEntity<List<Map<String,Object>>>(
+                ratingData.queryAvgThisMonth(), HttpStatus.OK);
         }
         
         @GetMapping(value = "/rating/number", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,4 +94,12 @@ public class DashboardController {
             return new ResponseEntity<List<Map<String,Object>>>(
                 ratingData.queryNumberRating(), HttpStatus.OK);
         }
+
+        @GetMapping(value = "/rating/month", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<List<Map<String,Object>>> ratingNumberthisMonth(){
+            return new ResponseEntity<List<Map<String,Object>>>(
+                ratingData.queryNumberMonth(), HttpStatus.OK);
+        }
+
+
 }
