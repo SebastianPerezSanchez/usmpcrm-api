@@ -18,6 +18,6 @@ public interface ComplaintRepository extends JpaRepository<Complaint,Integer>{
     @Query("select count(*) as complaints from Complaint")
     List<Map<String,Object>> queryComplaintsAll();
 
-    @Query("select count(*) as complaints from Complaint c where extract(month from c.date) = extract(month from current_date)")
+    @Query("select count(*) as complaints from Complaint c where extract(month from c.date) = extract(month from current_date) and extract(year from c.date) = extract(year from current_date)")
     List<Map<String,Object>> queryComplaintsthisMonth();
 }

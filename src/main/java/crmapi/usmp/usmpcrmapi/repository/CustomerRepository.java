@@ -19,7 +19,7 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer>{
     @Query("select count(*) as customers from Customer")
     List<Map<String, Object>> queryAllCustomers();
 
-    @Query("select count(*) as customers from Customer c where extract(month from c.registerDate) = extract(month from current_date)")
+    @Query("select count(*) as customers from Customer c where extract(month from c.registerDate) = extract(month from current_date)  and extract(year from c.registerDate) = extract(year from current_date)")
     List<Map<String, Object>> queryCustomersthisMonth();
 
     @Query("select concat('ejemplo') as ejemplo, sum(case when extract(year from age(tc.birthdate)) between 18 and 30 then 1 else 0 end) as a, sum(case when extract(year from age(tc.birthdate)) between 31 and 45 then 1 else 0 end) as b, sum(case when extract(year from age(tc.birthdate)) > 46 then 1 else 0 end) as c from Customer tc")
